@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import MaterialTable from 'material-table';
-import { sampleData } from '../../testData/testCityData';
 import axios from 'axios';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
