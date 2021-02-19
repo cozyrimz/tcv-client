@@ -3,6 +3,7 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import { useParams } from 'react-router-dom';
+import LargeComps from './LargeComps';
 import ComingSoon from './ComingSoon';
 import Container from '@material-ui/core/Container';
 import HubCard from './HubCard';
@@ -11,7 +12,7 @@ import Grid from '@material-ui/core/Grid';
 import axios from 'axios';
 import './City.scss';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   cityPaper: {
     borderRadius: 0,
     padding: 20,
@@ -40,10 +41,10 @@ export default function City() {
   const [minor, setMinor] = useState([]);
 
   const getHubData = async () => {
-    const res = await axios.get(`${process.env.API_URL}/getHubs`, { timeout: 4000 }).catch(err => console.error(err));
+    const res = await axios.get(`${process.env.API_URL}/getHubs`, { timeout: 4000 }).catch((err) => console.error(err));
     let hubArr = res.data.hubs;
-    setMajor(hubArr.filter(entry => entry.hubType === 'major'));
-    setMinor(hubArr.filter(entry => entry.hubType === 'minor'));
+    setMajor(hubArr.filter((entry) => entry.hubType === 'major'));
+    setMinor(hubArr.filter((entry) => entry.hubType === 'minor'));
   };
 
   useEffect(() => {
@@ -54,12 +55,13 @@ export default function City() {
   return (
     <Paper className={classes.cityPaper}>
       {city === 'Austin' ? (
-        <Container maxWidth="lg">
-          <Typography variant="h3" className={classes.weeklyAlloc}>
+        <Container maxWidth='lg'>
+          <LargeComps />
+          <Typography variant='h3' className={classes.weeklyAlloc}>
             {city} Weekly allocations [{format(begOfWeek, 'MMM do')}]
           </Typography>
           <hr className={classes.horizontalLine} />
-          <Typography variant="h2" className={classes.hubTitle}>
+          <Typography variant='h2' className={classes.hubTitle}>
             Regional Hubs
           </Typography>
           <hr className={classes.horizontalLine} />
@@ -69,7 +71,7 @@ export default function City() {
             ))}
           </Grid>
           <hr className={classes.horizontalLine} />
-          <Typography variant="h2" className={classes.hubTitle}>
+          <Typography variant='h2' className={classes.hubTitle}>
             Additional Providers
           </Typography>
           <hr className={classes.horizontalLine} />
