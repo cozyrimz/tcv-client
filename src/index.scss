@@ -1,0 +1,15 @@
+body {
+  font-family: "Bebas Neue", cursive;
+  letter-spacing: 1px;
+}
+a.active {
+  & button {
+    text-decoration-line: underline;
+    text-decoration-style: solid;
+    text-decoration-color: black;
+    text-decoration-thickness: 2px;
+  }
+}
+a {
+  color: black;
+}
