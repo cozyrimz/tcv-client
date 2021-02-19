@@ -50,7 +50,7 @@ export default function NewEntryForm() {
   const { register, handleSubmit, control, errors } = useForm();
   const onSubmit = async data => {
     let res = await axios
-      .post(`${process.env.API_URL}/newHub`, data, { timeout: 3000 })
+      .post(`${process.env.API_URL}/newHub`, data, { timeout: 10000 })
       .catch(err => console.error({ data, err }));
   };
   return (

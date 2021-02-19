@@ -7,13 +7,13 @@ import TextField from '@material-ui/core/TextField';
 
 const deleteApi = async (oldData, refreshData) => {
   const res = await axios
-    .delete(`${process.env.API_URL}/deleteHub/${oldData._id}`, { timeout: 3000 })
+    .delete(`${process.env.API_URL}/deleteHub/${oldData._id}`, { timeout: 5000 })
     .catch(err => console.error(err));
   refreshData();
 };
 const editApi = async (newData, oldData, refreshData) => {
   const res = await axios
-    .post(`${process.env.API_URL}/updateHub`, newData, { timeout: 3000 })
+    .post(`${process.env.API_URL}/updateHub`, newData, { timeout: 5000 })
     .catch(err => console.error(err));
   refreshData();
 };
@@ -26,7 +26,7 @@ export default function EditEntries() {
   const [tableData, setTableData] = useState([]);
 
   const refreshData = async () => {
-    const res = await axios.get(`${process.env.API_URL}/getHubs`, { timeout: 4000 }).catch(err => console.error(err));
+    const res = await axios.get(`${process.env.API_URL}/getHubs`, { timeout: 10000 }).catch(err => console.error(err));
     if (res && res.data && res.data.hubs) setTableData(res.data.hubs);
   };
 
