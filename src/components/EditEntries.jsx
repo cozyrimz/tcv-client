@@ -7,13 +7,13 @@ import TextField from '@material-ui/core/TextField';
 
 const deleteApi = async (oldData, refreshData) => {
   const res = await axios
-    .delete(`${process.env.API_URL}/deleteHub/${oldData._id}`, { timeout: 3000 })
+    .delete(`${process.env.API_URL}/deleteHub/${oldData._id}`, { timeout: 8000 })
     .catch(err => console.error(err));
   refreshData();
 };
 const editApi = async (newData, oldData, refreshData) => {
   const res = await axios
-    .post(`${process.env.API_URL}/updateHub`, newData, { timeout: 3000 })
+    .post(`${process.env.API_URL}/updateHub`, newData, { timeout: 8000 })
     .catch(err => console.error(err));
   refreshData();
 };
@@ -26,7 +26,7 @@ export default function EditEntries() {
   const [tableData, setTableData] = useState([]);
 
   const refreshData = async () => {
-    const res = await axios.get(`${process.env.API_URL}/getHubs`, { timeout: 4000 }).catch(err => console.error(err));
+    const res = await axios.get(`${process.env.API_URL}/getHubs`, { timeout: 8000 }).catch(err => console.error(err));
     if (res && res.data && res.data.hubs) setTableData(res.data.hubs);
   };
 
@@ -50,11 +50,10 @@ export default function EditEntries() {
             editComponent: ({ onChange, value }) => {
               return (
                 <Select
-                  labelId="edit-select-mat-table"
-                  id="edit-select-mat-table-id"
+                  labelId='edit-select-mat-table'
+                  id='edit-select-mat-table-id'
                   value={value}
-                  onChange={e => onChange(e.target.value)}
-                >
+                  onChange={e => onChange(e.target.value)}>
                   <MenuItem value={'Austin'}>Austin</MenuItem>
                   <MenuItem value={'Dallas'}>Dallas</MenuItem>
                   <MenuItem value={'Houston'}>Houston</MenuItem>
@@ -73,13 +72,13 @@ export default function EditEntries() {
             editComponent: props => {
               return (
                 <TextField
-                  name="url"
-                  label="URL"
+                  name='url'
+                  label='URL'
                   defaultValue={props.value[0].url}
                   onChange={e => {
                     props.onChange(e.target.value);
                   }}
-                  color="secondary"
+                  color='secondary'
                 />
               );
             },
@@ -91,13 +90,12 @@ export default function EditEntries() {
             editComponent: ({ onChange, value }) => {
               return (
                 <Select
-                  labelId="edit-select-mat-table"
-                  id="edit-select-mat-table-id"
+                  labelId='edit-select-mat-table'
+                  id='edit-select-mat-table-id'
                   value={value}
                   onChange={e => {
                     onChange(e.target.value);
-                  }}
-                >
+                  }}>
                   <MenuItem value={'major'}>Major</MenuItem>
                   <MenuItem value={'minor'}>Minor</MenuItem>
                 </Select>
@@ -106,7 +104,7 @@ export default function EditEntries() {
           },
         ]}
         data={tableData}
-        title="Edit City Entries"
+        title='Edit City Entries'
       />
     </div>
   );

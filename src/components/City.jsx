@@ -12,7 +12,7 @@ import Grid from '@material-ui/core/Grid';
 import axios from 'axios';
 import './City.scss';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   cityPaper: {
     borderRadius: 0,
     padding: 20,
@@ -41,10 +41,10 @@ export default function City() {
   const [minor, setMinor] = useState([]);
 
   const getHubData = async () => {
-    const res = await axios.get(`${process.env.API_URL}/getHubs`, { timeout: 4000 }).catch((err) => console.error(err));
+    const res = await axios.get(`${process.env.API_URL}/getHubs`, { timeout: 8000 }).catch(err => console.error(err));
     let hubArr = res.data.hubs;
-    setMajor(hubArr.filter((entry) => entry.hubType === 'major'));
-    setMinor(hubArr.filter((entry) => entry.hubType === 'minor'));
+    setMajor(hubArr.filter(entry => entry.hubType === 'major'));
+    setMinor(hubArr.filter(entry => entry.hubType === 'minor'));
   };
 
   useEffect(() => {
