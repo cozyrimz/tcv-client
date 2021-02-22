@@ -12,27 +12,27 @@ import Link from '@material-ui/core/Link';
 import Button from '@material-ui/core/Button';
 
 const largeCompData = [
-  { title: 'HEB Pharmacy', imagesrc: '../../static/hebpic.png', url: 'https://vaccine.heb.com/' },
+  { title: 'HEB Pharmacy', imagesrc: '/static/hebpic.png', url: 'https://vaccine.heb.com/' },
   {
     title: 'CVS Pharmacy',
-    imagesrc: '../../static/cvspic.png',
+    imagesrc: '/static/cvspic.png',
     url: 'https://www.cvs.com/vaccine/intake/store/covid-screener/covid-qns',
   },
   {
     title: 'Randalls Grocery',
-    imagesrc: '../../static/randallspic.png',
+    imagesrc: '/static/randallspic.png',
     url: 'https://www.mhealthappointments.com/covidappt',
   },
-  { title: 'Walmart', imagesrc: '../../static/walmartpic.png', url: 'https://www.walmart.com/cp/1228302' },
-  { title: 'Sams Club', imagesrc: '../../static/samsclubpic.png', url: 'https://www.samsclub.com/pharmacy' },
+  { title: 'Walmart', imagesrc: '/static/walmartpic.png', url: 'https://www.walmart.com/cp/1228302' },
+  { title: 'Sams Club', imagesrc: '/static/samsclubpic.png', url: 'https://www.samsclub.com/pharmacy' },
   {
     title: 'Walgreens',
-    imagesrc: '../../static/walgreenspic.png',
+    imagesrc: '/static/walgreenspic.png',
     url: 'https://www.walgreens.com/findcare/vaccination/covid-19/location-screening',
   },
 ];
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   largCompPaper: {
     borderRadius: 0,
     padding: 20,
@@ -53,6 +53,9 @@ const useStyles = makeStyles((theme) => ({
   cardmedia: {
     height: 140,
   },
+  cardActionArea: {
+    padding: 20,
+  },
 }));
 export default function LargeComps() {
   const [data, setData] = useState(largeCompData || []);
@@ -68,14 +71,21 @@ export default function LargeComps() {
           return (
             <Grid item xs={12} sm={6} md={4} key={`${title}-bigComps`}>
               <Card className={classes.cardroot}>
-                <CardActionArea>
-                  <CardMedia className={classes.cardmedia} image={imagesrc} />
-                  <CardContent>
-                    <Typography gutterBottom variant='h5' component='h4'>
-                      {title}
-                    </Typography>
-                  </CardContent>
-                </CardActionArea>
+                <Link
+                  href={url}
+                  target='_blank'
+                  rel='noopener'
+                  color='secondary'
+                  style={{ textDecoration: 'underline', wordWrap: 'break-word' }}>
+                  <CardActionArea className={classes.cardActionArea}>
+                    <CardMedia className={classes.cardmedia} image={imagesrc} title={title} component='img' />
+                    <CardContent>
+                      <Typography gutterBottom variant='h5' component='h4'>
+                        {title}
+                      </Typography>
+                    </CardContent>
+                  </CardActionArea>
+                </Link>
                 <CardActions>
                   {/* <Button size='medium' color='secondary'>
                   {url ? 'Check Availability' : 'Coming Soon'}
